@@ -30,41 +30,34 @@ import com.storageservice.dao.StorageServiceDao;
 
 
 
-@Entity
-@Table(name = "Person")
-@NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")
-@XmlRootElement
+
 public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 	// fields
-	@Id
-	@GeneratedValue(generator = "sqlite_person")
-	@TableGenerator(name = "sqlite_person", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "Person")
-	@Column(name = "idPerson")
+
 	private int idPerson;
 
-	@Column(name = "lastname")
+	
 	private String lastname;
 
-	@Column(name = "firstname")
+	
 	private String firstname;
 
-	@Column(name = "birthdate")
+	
 	private String birthdate;
 	
-	@Column(name = "email")
+	
 	private String email;
-	@Column(name = "genre")
+	
 	private String genre;
 	
-	@Column(name = "weight")
+	
 	private double weight;
-	@Column(name = "height")
+	
 	private double height;
 	
 	// references
-	@OneToOne
-	@JoinColumn(name = "idBmi", referencedColumnName = "idBmi", insertable = true, updatable = true)
+	
 	private Bmi bmi;
 
 	public Person() {
@@ -158,50 +151,6 @@ public class Person implements Serializable {
 		return Integer.parseInt(sub.toString());
 	}
 
-	// Database operations
-	// get the Person which id correspond to the given id as parameter, return a
-	// Person
-	public static Person getPersonById(long personId) {
-		EntityManager em = StorageServiceDao.instance.createEntityManager();
-		Person p = em.find(Person.class, (int) personId);
-		StorageServiceDao.instance.closeConnections(em);
-		return p;
-	}
-
-	// get all the People present in the db, return a list of Person
-	public static List<Person> getAll() {
-		System.out.println("--> Initializing Entity manager...");
-		EntityManager em = StorageServiceDao.instance.createEntityManager();
-		System.out.println("--> Querying the database for all the people...");
-		List<Person> list = em.createNamedQuery("Person.findAll", Person.class).getResultList();
-		System.out.println("--> Closing connections of entity manager...");
-		StorageServiceDao.instance.closeConnections(em);
-		return list;
-	}
-
-	// save a new Person in the db
-	public static Person savePerson(Person p) {
-		EntityManager em = StorageServiceDao.instance.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		em.persist(p);
-		tx.commit();
-		StorageServiceDao.instance.closeConnections(em);
-		return p;
-	}
-
-
-
-	// delete the Person givean as input in the db
-	public static void removePerson(Person p) {
-		EntityManager em = StorageServiceDao.instance.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		p = em.merge(p);
-		em.remove(p);
-		tx.commit();
-		StorageServiceDao.instance.closeConnections(em);
-	}
-
+	
 
 }

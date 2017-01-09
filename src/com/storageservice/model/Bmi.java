@@ -30,6 +30,8 @@ public class Bmi implements Serializable{
 private double value;
 @Column(name = "status")
 private String status;
+@Column(name = "idPerson")
+private int idPerson;
 
 public double getValue(){
 	return value;
@@ -43,7 +45,12 @@ public void setStatus(String status){
 public void setValue(double value){
 	this.value=value;
 }
-
+public int getIdPerson(){
+	return idPerson;
+}
+public void setIdPerson(int idPerson){
+	this.idPerson=idPerson;
+}
 
 //Database operations
 	// get the Bmi which id correspond to the given id as parameter, return a

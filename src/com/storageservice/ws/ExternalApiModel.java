@@ -17,26 +17,37 @@ import com.storageservice.model.Bmi;
 @WebService
 @SOAPBinding(style = Style.DOCUMENT, use=Use.LITERAL) 
 public interface ExternalApiModel {
+    @WebMethod(operationName="calculateandSavebmi")
+    @WebResult(name="bmi") 
+    public Bmi CalculateAndSaveBmi(@WebParam(name="personId") Person p);
+    
     @WebMethod(operationName="getbmi")
     @WebResult(name="bmi") 
-    public Bmi getBmi(@WebParam(name="personId") long id);
- 
+    public Bmi getBmi(@WebParam(name="idBmi") int id);
+    
     @WebMethod(operationName="getPersonInformation")
     @WebResult(name="bmi") 
     public Person getPersonInformation(@WebParam(name="personId") long id);
     
-    @WebMethod(operationName="readPerson")
-    @WebResult(name="person") 
-    public Person readPerson(@WebParam(name="personId") long id);
- 
-    @WebMethod(operationName="readPersonList")
-    @WebResult(name="people") 
-    public List<Person> readPersonList();
 
     @WebMethod(operationName="getWeatherByLatLng")
     @WebResult(name="weather") 
     public String getWeatherByLatLng(@WebParam(name="lat") String lat,@WebParam(name="lng") String lng);
 
+    @WebMethod(operationName="registration")
+    @WebResult(name="registration") 
+    public int registration(@WebParam(name="person") Person p);
+ 
+    @WebMethod(operationName="login")
+    @WebResult(name="login") 
+    public int login(@WebParam(name="id") int id);
 
+    //calorie-> tabella calorie attività davide
+   
+    
+    //prendere le attività dispnobili su fitbit della
+    //totale calorie bruciati o rimanenti dal goal
+    //prendere il goal
+    
 
 }

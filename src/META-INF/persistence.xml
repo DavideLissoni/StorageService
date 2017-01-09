@@ -4,7 +4,6 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="storage-service-jpa">	
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>com.storageservice.model.Person</class>
 		<class>com.storageservice.model.Bmi</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
