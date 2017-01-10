@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -110,4 +111,10 @@ public void setNinetyKg(int seventyyKg){
 		em.remove(s);
 		tx.commit();
 		StorageServiceDao.instance.closeConnections(em);
-	}}
+	}
+	
+	
+
+
+
+}

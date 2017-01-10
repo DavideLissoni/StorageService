@@ -17,8 +17,8 @@ import org.json.JSONObject;
 
 
 import com.storageservice.model.Person;
-
-
+import com.storageservice.model.Sport;
+import com.storageservice.model.SportCalories;
 import com.storageservice.model.Bmi;
 
 //Service Implementation
@@ -58,6 +58,7 @@ public class ExternalApiImpl implements ExternalApiModel {
 		bmi.setIdPerson(p.getIdPerson());
 		bmi.setStatus(jobj.getJSONObject("bmi").getString("status"));
 		bmi.setValue(jobj.getJSONObject("bmi").getDouble("value"));
+		bmi.setRisk(jobj.getJSONObject("bmi").getString("risk"));
 		Bmi.saveBmi(bmi);
 		p.setBmi(bmi);
 		return bmi;
@@ -67,7 +68,7 @@ public class ExternalApiImpl implements ExternalApiModel {
 			}
 	}
 
-	@Override
+	@Override//attenti al bmi come si comporta?
 	public Person getPersonInformation(long id) {	
 		String url =localurl+"/person/"+id;
 		try{
@@ -90,6 +91,7 @@ public class ExternalApiImpl implements ExternalApiModel {
 		Person p= new Person();
 		System.out.println(response.toString());
 		 JSONObject jobj  = new JSONObject(response.toString());
+		
 		 p.setLastname(jobj.getString("lastname"));
 		 p.setfirstname(jobj.getString("firstname"));
 		 p.setBirthdate(jobj.getString("birthdate"));
@@ -195,6 +197,38 @@ System.out.println("error in getting person data on local db "+e);
 	public Bmi getBmi(int id) {
 		Bmi bmi = Bmi.getBmiById(id);
 		return bmi;
+	}
+
+	@Override
+	public List<Sport> getSportsByWeather(String weather) {
+		
+		return Sport.getSportByWeather(weather);
+	}
+
+	@Override
+	public SportCalories getCaloriesBySport(Sport sport) {
+		
+		SportCalories calories= sport.getSportCalories();
+		/*double weight=p.getWeight();
+		int caloriesPerHour;
+		if (weight<=70.0){
+			caloriesPerHour=calories.getSixtyKg();
+		}else if(weight>=70.0 &&weight<80.0){
+			caloriesPerHour=calories.getSeventyKg();
+			}else if(weight>=80.0 &&weight<90.0){
+				caloriesPerHour=calories.getEightyKg();
+		}else if(weight>=90.0 ){
+			caloriesPerHour=calories.getNinetyKg();
+		}*/
+		
+		
+		return calories;
+	}
+
+	@Override
+	public List<Sport> getSportsList() {
+		
+		return Sport.getAll();
 	}
 
 

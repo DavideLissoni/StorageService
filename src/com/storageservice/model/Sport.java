@@ -31,8 +31,10 @@ public class Sport implements Serializable{
 	@TableGenerator(name = "sqlite_sport", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "Sport")
 	@Column(name = "idSport")
 	private int idSport;
+
 @Column(name = "name")
 private String name;
+
 @Column(name = "perfectWeather")
 private String perfectWeather;
 @OneToOne
@@ -48,7 +50,7 @@ public void setIdSport(int idSport){
 public String getName(){
 	return name;
 }
-public void setStatus(String name){
+public void setName(String name){
 	this.name=name;
 }
 public String getPerfectWeather(){

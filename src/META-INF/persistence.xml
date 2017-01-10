@@ -5,6 +5,8 @@
 	<persistence-unit name="storage-service-jpa">	
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>com.storageservice.model.Bmi</class>
+		<class>com.storageservice.model.Sport</class>
+		<class>com.storageservice.model.SportCalories</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/home/hduser/workspace/StorageService/storageserviceDB" />

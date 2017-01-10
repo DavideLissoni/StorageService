@@ -12,6 +12,8 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
 import com.storageservice.model.Person;
+import com.storageservice.model.Sport;
+import com.storageservice.model.SportCalories;
 import com.storageservice.model.Bmi;
 //service definition
 @WebService
@@ -19,7 +21,7 @@ import com.storageservice.model.Bmi;
 public interface ExternalApiModel {
     @WebMethod(operationName="calculateandSavebmi")
     @WebResult(name="bmi") 
-    public Bmi CalculateAndSaveBmi(@WebParam(name="personId") Person p);
+    public Bmi CalculateAndSaveBmi(@WebParam(name="person") Person p);
     
     @WebMethod(operationName="getbmi")
     @WebResult(name="bmi") 
@@ -42,6 +44,19 @@ public interface ExternalApiModel {
     @WebResult(name="login") 
     public int login(@WebParam(name="id") int id);
 
+    @WebMethod(operationName="getSporstByWeather")
+    @WebResult(name="sportsbyWeather") 
+    public List<Sport> getSportsByWeather(@WebParam(name="weather")String weather );
+    
+    @WebMethod(operationName="getCaloriesBySport")
+    @WebResult(name="calories") 
+    public SportCalories getCaloriesBySport(@WebParam(name="sport")Sport sport);
+    
+    @WebMethod(operationName="getSporsList")
+    @WebResult(name="sports") 
+    public List<Sport> getSportsList();
+    
+    
     //calorie-> tabella calorie attività davide
    
     

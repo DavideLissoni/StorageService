@@ -32,6 +32,8 @@ private double value;
 private String status;
 @Column(name = "idPerson")
 private int idPerson;
+@Column(name = "risk")
+private String risk;
 
 public double getValue(){
 	return value;
@@ -41,6 +43,12 @@ public String getStatus(){
 }
 public void setStatus(String status){
 	this.status=status;
+}
+public String getRisk(){
+	return risk;
+}
+public void setRisk(String risk){
+	this.risk=risk;
 }
 public void setValue(double value){
 	this.value=value;
