@@ -51,6 +51,12 @@ public int getIdPerson(){
 public void setIdPerson(int idPerson){
 	this.idPerson=idPerson;
 }
+public int getIdBmi(){
+	return idBmi;
+}
+public void setIdBmi(int idBmi){
+	this.idBmi=idBmi;
+}
 
 //Database operations
 	// get the Bmi which id correspond to the given id as parameter, return a

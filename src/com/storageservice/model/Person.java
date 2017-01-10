@@ -29,11 +29,8 @@ import org.joda.time.Years;
 import com.storageservice.dao.StorageServiceDao;
 
 
-
-
 public class Person implements Serializable {
-	private static final long serialVersionUID = 1L;
-	// fields
+
 
 	private int idPerson;
 
