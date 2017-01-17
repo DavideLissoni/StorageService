@@ -41,13 +41,6 @@ public enum StorageServiceDao {
 	public EntityManagerFactory getEntityManagerFactory() {
 		return emf;
 	}
-	// get all the person in the db, return a list
-		public static List<Person> getAll() {
-			EntityManager em = instance.createEntityManager();
-			List<Person> list = em.createNamedQuery("Person.findAll", Person.class).getResultList();
-			instance.closeConnections(em);
-			return list;
-		}
-
+	
 	
 }

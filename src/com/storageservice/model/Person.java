@@ -29,7 +29,7 @@ import org.joda.time.Years;
 import com.storageservice.dao.StorageServiceDao;
 
 
-public class Person implements Serializable {
+public class Person  {
 
 
 	private int idPerson;
@@ -42,13 +42,13 @@ public class Person implements Serializable {
 
 	
 	private String birthdate;
-	
+	private String password;
 	
 	private String email;
 	
 	private String genre;
 	
-	
+	private String lifeStyle;
 	private double weight;
 	
 	private double height;
@@ -56,6 +56,12 @@ public class Person implements Serializable {
 	// references
 	
 	private Bmi bmi;
+	private int nTotalGoal;
+	private String level;
+	private int idLevel;
+	private int idLifeStyle;
+	private int nGoalAchieved;
+	private String description;
 
 	public Person() {
 	}
@@ -69,7 +75,20 @@ public class Person implements Serializable {
 	public void setIdPerson(int idPerson) {
 		this.idPerson = idPerson;
 	}
+	public int getIdLevel() {
+		return this.idLevel;
+	}
 
+	public void setIdLevel(int idLevel) {
+		this.idLevel= idLevel;
+	}
+	public int getIdLifeStyle() {
+		return this.idLifeStyle;
+	}
+
+	public void setIdLifeStyle(int idLifeStyle) {
+		this.idLifeStyle= idLifeStyle;
+	}
 	public String getfirstname() {
 		return this.firstname;
 	}
@@ -77,7 +96,13 @@ public class Person implements Serializable {
 	public void setfirstname(String firstname) {
 		this.firstname = firstname;
 	}
+	public String getPassword() {
+		return this.password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getLastname() {
 		return this.lastname;
 	}
@@ -93,6 +118,13 @@ public class Person implements Serializable {
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 
+	}
+	public String getLifeStyle() {
+		return this.lifeStyle;
+	}
+
+	public void setLifeStyle(String lifeStyle) {
+		this.lifeStyle = lifeStyle;
 	}
 
 	public String getEmail() {
@@ -121,7 +153,7 @@ public class Person implements Serializable {
 	}
 
 	public void setGenre(String genre) {
-		this.birthdate = birthdate;
+		this.genre = genre;
 	}
 	
 	public Bmi getBmi(){
@@ -130,7 +162,37 @@ public class Person implements Serializable {
 	public void setBmi(Bmi bmi){
 		this.bmi=bmi;
 	}
-	
+
+	public int getNGoalAchieved() {
+		return this.nGoalAchieved;
+	}
+
+	public void setNGoalAchieved(int nGoalAchieved) {
+		this.nGoalAchieved = nGoalAchieved;
+	}
+
+	public int getNTotalGoal() {
+		return this.nTotalGoal;
+	}
+
+	public void setNTotalGoal(int nTotalGoal) {
+		this.nTotalGoal = nTotalGoal;
+	}
+
+	public String getLevel() {
+		return this.level;
+	}
+
+	public void setLevel(String level) {
+		this.level= level;
+	}
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description= description;
+	}
 	
 	public int ageCalculator(String birthdate){
 		String[] parts = birthdate.split("-");

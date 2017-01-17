@@ -10,11 +10,14 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.storageservice.dao.StorageServiceDao;
+
+
 
 @Entity
 @Table(name = "Bmi")
@@ -22,8 +25,7 @@ import com.storageservice.dao.StorageServiceDao;
 @XmlRootElement
 public class Bmi implements Serializable{
 	@Id
-	@GeneratedValue(generator = "sqlite_bmi")
-	@TableGenerator(name = "sqlite_bmi", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "Bmi")
+	@GeneratedValue
 	@Column(name = "idBmi")
 	private int idBmi;
 @Column(name = "value")
@@ -34,6 +36,8 @@ private String status;
 private int idPerson;
 @Column(name = "risk")
 private String risk;
+@Column(name = "prime")
+private String prime;
 
 public double getValue(){
 	return value;
@@ -65,7 +69,12 @@ public int getIdBmi(){
 public void setIdBmi(int idBmi){
 	this.idBmi=idBmi;
 }
-
+public String getPrime(){
+	return prime;
+}
+public void setPrime(String prime){
+	this.prime=prime;
+}
 //Database operations
 	// get the Bmi which id correspond to the given id as parameter, return a
 	// Bmi
@@ -107,5 +116,40 @@ public void setIdBmi(int idBmi){
 		tx.commit();
 		StorageServiceDao.instance.closeConnections(em);
 	}
+	
+	public static Bmi updateBmi(Bmi b) {
+		EntityManager em = StorageServiceDao.instance.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		b = em.merge(b);
+		tx.commit();
+		StorageServiceDao.instance.closeConnections(em);
+		return b;
+	}
+
+	//get bmi by idPerson
+	public static Bmi getBmiByIdPerson(int idPerson) {
+		EntityManager em = StorageServiceDao.instance.createEntityManager();
+		try {
+			Query q = em.createQuery(
+					"SELECT b FROM Bmi b WHERE b.idPerson=:idPerson",
+					Sport.class);
+			q.setParameter("idPerson", idPerson);
+			
+			Bmi bmi = (Bmi) q.getSingleResult();
+			StorageServiceDao.instance.closeConnections(em);
+			return bmi;
+		} catch (Exception e) {
+			System.out.println(
+					"The database doesn't contain a bmi for the person required");
+			StorageServiceDao.instance.closeConnections(em);
+			return null;
+		}
+
+	}
+	
+	
+	
+	
 
 }

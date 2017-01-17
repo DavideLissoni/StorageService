@@ -27,8 +27,7 @@ import com.storageservice.dao.StorageServiceDao;
 @XmlRootElement
 public class Sport implements Serializable{
 	@Id
-	@GeneratedValue(generator = "sqlite_sport")
-	@TableGenerator(name = "sqlite_sport", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "Sport")
+	@GeneratedValue
 	@Column(name = "idSport")
 	private int idSport;
 
@@ -38,8 +37,8 @@ private String name;
 @Column(name = "perfectWeather")
 private String perfectWeather;
 @OneToOne
-@JoinColumn(name = "idSportCalories", referencedColumnName = "idSportCalories", insertable = true, updatable = true)
-private SportCalories sportCalories;
+@JoinColumn(name = "idActivity", referencedColumnName = "idActivity", insertable = true, updatable = true)
+private Activity activity;
 
 public int getIdSport(){
 	return idSport;
@@ -59,11 +58,11 @@ public String getPerfectWeather(){
 public void setPerfectWeather(String perfectWeather){
 	this.perfectWeather=perfectWeather;}
 
-public SportCalories getSportCalories(){
-	return sportCalories;
+public Activity getActivity(){
+	return activity;
 }
-public void setSportCalories(SportCalories sportCalories){
-	this.sportCalories=sportCalories;
+public void setActivity(Activity activity){
+	this.activity=activity;
 }
 
 
